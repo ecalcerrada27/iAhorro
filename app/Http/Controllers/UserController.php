@@ -39,7 +39,7 @@ final class UserController extends Controller
         }catch(\Exception $e){
             return response()->json(['message' => $e->getMessage()]);
         }
-        
+
     }
 
     /**
@@ -96,6 +96,7 @@ final class UserController extends Controller
     private function upsert(UserFormRequest $request, ? int $id=null): array
     {
         try{
+            $usuario = User::select('name')->where('id', '1')->first();
             $data=UpsertUserAction::execute($request, $id);
             return $data;
         }catch(\Exception $e){
